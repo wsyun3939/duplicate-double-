@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DUPLICATE-DOUBLE-.dir\\main.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\duplicate-double-\\main.c\"",
+  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/main.c"
+},
+{
+  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DUPLICATE-DOUBLE-.dir\\branch_and_bound.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\duplicate-double-\\branch_and_bound.c\"",
+  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/branch_and_bound.c"
+},
+{
+  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DUPLICATE-DOUBLE-.dir\\EnumerateRelocation.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\duplicate-double-\\EnumerateRelocation.c\"",
+  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/EnumerateRelocation.c"
+},
+{
+  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DUPLICATE-DOUBLE-.dir\\IntDequeue.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\duplicate-double-\\IntDequeue.c\"",
+  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/IntDequeue.c"
+},
+{
+  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DUPLICATE-DOUBLE-.dir\\lower_bound.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\duplicate-double-\\lower_bound.c\"",
+  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/lower_bound.c"
+},
+{
+  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DUPLICATE-DOUBLE-.dir\\support_function.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\duplicate-double-\\support_function.c\"",
+  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/duplicate-double-/support_function.c"
+}
+]
