@@ -83,6 +83,7 @@ int enumerate_relocation(IntDequeue *q,int depth, int priority, direction Dir) {
 				Array_print(q_temp);
 #endif
 
+				if(IsEmpty(&q_temp[i])) break;
 			}
 			else {
 				if (IsFull(&q[i])) continue;
@@ -101,7 +102,7 @@ int enumerate_relocation(IntDequeue *q,int depth, int priority, direction Dir) {
 				Array_print(q);
 #endif
 
-
+				if(IsEmpty(&q[i])) break;
 			}
 		}
 		if (DirNext == both) {
