@@ -25,8 +25,10 @@ int main(void) {
 	int nblock = NBLOCK;
 	int i, j, x, l;
 	int k = 0;
+	int invalid=0;
 	int sum = 0;
 	int missmatch=0;
+	double max_time=0;
 	char filename[BUFFER];
 	char str[BUFFER];
 	FILE *fp_csv = NULL;
@@ -36,6 +38,7 @@ int main(void) {
 		sprintf(filename, "/Users/watanabeshun/Documents/alpha=%.1f/%d-%d-%d/%05d.txt", ALPHA,TIER, STACK, nblock, a);
 		printf("%s\n", filename);
 
+		clock_t max_s=clock();
 		//	読み込みモードでファイルを開く
 		fp=fopen(filename, "r");
 
@@ -64,10 +67,17 @@ int main(void) {
 		int priority = 1;
 		// int UB = UpperBound(stack,priority,both);
 		int min_relocation = 
-		branch_and_bound(stack, 100,UB_cur, LB1,priority,both,0,0);
+		branch_and_bound(stack, 100,UB_cur, LB1,priority,both,0,0,clock());
 		//int min_relocation = enumerate_relocation(stack, depth, priority, both);
 		printf("min_relocation:%d,difference%d\n", min_relocation, min_relocation - LB1);
-		sum += min_relocation;
+		getchar();
+		clock_t max_e=clock();
+		if(min_relocation==0) getchar();
+		if(max_time<(max_e-max_s)) max_time=max_e-max_s;
+		if(min_relocation==-1){
+			invalid++;
+		}	
+		else sum += min_relocation;
 		if (min_relocation == LB1) {
 			k++;
 		}
@@ -94,7 +104,7 @@ int main(void) {
 	}
 	clock_t end = clock();
 	Array_terminate(stack);
-	printf("time:%f,match:%d,ave:%f,missmatch:%d\n", (double)(end - start) / CLOCKS_PER_SEC, k, (double)sum / (100 * TIER),missmatch);
+	printf("time:%f,max_time=%f,match:%d,ave:%f,missmatch:%d\n", (double)(end - start) / (CLOCKS_PER_SEC*100*TIER),max_time/CLOCKS_PER_SEC, k, (double)sum / (100 * TIER-invalid),missmatch);
 	return 0;
 }
 

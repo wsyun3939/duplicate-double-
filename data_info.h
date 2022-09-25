@@ -3,9 +3,9 @@
 
 #define ALPHA 0.2
 #define TIER 6
-#define STACK 7
-#define NBLOCK 36
-#define NUMBER 3701
+#define STACK 8
+#define NBLOCK 44
+#define NUMBER 6482
 #define TEST 1
 #define EITHER
 #define DISTINCTIVE

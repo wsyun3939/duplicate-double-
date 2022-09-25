@@ -3,6 +3,7 @@
 
 #include "IntDequeue.h"
 #include "data_info.h"
+#include <time.h>
 
 #ifdef EITHER
 typedef struct{
@@ -26,7 +27,7 @@ typedef struct {
 } Blocking;
 
 //*---仮上界値を用いた分枝限定法---*//
-int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB, int priority,direction dir,int DstDeque,int k);
+int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB, int priority,direction dir,int DstDeque,int k,clock_t start);
 
 //*---挿入ソート---*//
 int insert_sort(IntDequeue *q);

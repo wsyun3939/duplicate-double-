@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "IntDequeue.h"
 #include "lower_bound.h"
 #include "branch_and_bound.h"
 #include "data_info.h"
 
 #ifdef EITHER
-int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, direction Dir,int DstDeque,int k) {
+int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, direction Dir,int DstDeque,int k,clock_t start) {
 	static int num_ret;
 	static int depth = 0;
 	static int SecondPosition = 0;
 	static int MinRelocation = 0;
 	static int NumBlocking = 0;
 	static int p_before = 1;
+	static int ans=0;
 	if (UB == UB_cur) {
 		depth = 0;
 		return MinRelocation = UB;
@@ -27,6 +29,16 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 	direction DirNext = Dir;
 	IntDequeue *q_temp = NULL;
 
+	clock_t end;
+
+	
+	end=clock();
+	if(((double)(end-start)/CLOCKS_PER_SEC)>1000){
+		depth=0;
+		return -1;
+	}
+
+	
 
 	switch (dir)
 	{
@@ -191,10 +203,17 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 					return MinRelocation;
 				}			
 				
-				if (branch_and_bound(q_temp, UB, UB_cur, LB_temp,q_temp[0].que[q_temp[0].min_idx[0]], DirNext,DstDeque,0)) {
+				end=clock();
+				ans=branch_and_bound(q_temp, UB, UB_cur, LB_temp,q_temp[0].que[q_temp[0].min_idx[0]], DirNext,DstDeque,0,start);
+				if (ans!=0 && ans!=-1) {
 					Array_terminate(q_temp);
 					free(q_temp);
 					return MinRelocation;
+				}
+				else if(ans==-1){
+					Array_terminate(q_temp);
+					free(q_temp);
+					return -1;
 				}
 
 #if TEST==0
@@ -220,10 +239,17 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 				Array_print(q_temp);
 #endif
 
-						if (branch_and_bound(q_temp, UB, UB_cur, LB_temp,priority, DirNext,j,i)) {
+						end=clock();
+						ans=branch_and_bound(q_temp, UB, UB_cur, LB_temp,priority, DirNext,j,i,start);
+						if (ans!=0 && ans!=-1) {
 						Array_terminate(q_temp);
 						free(q_temp);
 						return MinRelocation;
+					}
+					else if(ans==-1){
+						Array_terminate(q_temp);
+						free(q_temp);
+						return -1;
 					}
 					Array_copy(q_temp, q);
 
@@ -254,9 +280,14 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 				Array_print(q);
 #endif
 
-				if(branch_and_bound(q, UB, UB_cur, LB_temp,priority, lower,j,k)){
+				end=clock();
+				ans=branch_and_bound(q, UB, UB_cur, LB_temp,priority, lower,j,k,start);
+				if(ans!=0 && ans!=-1){
 					return MinRelocation;
 				}
+				else if(ans==-1){
+					return -1;
+				} 
 				Deque(&q[j],&num_ret,dir);
 
 #if TEST==0
@@ -321,10 +352,17 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 				Array_print(q_temp);
 #endif
 
-						if (branch_and_bound(q_temp, UB, UB_cur, LB_temp,priority, DirNext,j,i)) {
+						end=clock();
+						ans=branch_and_bound(q_temp, UB, UB_cur, LB_temp,priority, DirNext,j,i,start);
+						if (ans!=0 && ans!=-1) {
 						Array_terminate(q_temp);
 						free(q_temp);
 						return MinRelocation;
+					}
+					else if(ans==-1){
+						Array_terminate(q_temp);
+						free(q_temp);
+						return -1;
 					}
 					Array_copy(q_temp, q);
 
@@ -354,8 +392,13 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 				Array_print(q);
 #endif
 
-				if(branch_and_bound(q, UB, UB_cur, LB_temp+1, priority,lower,j,k)){
+				end=clock();
+				ans=branch_and_bound(q, UB, UB_cur, LB_temp+1, priority,lower,j,k,start);
+				if(ans!=0 && ans!=-1){
 					return MinRelocation;
+				}
+				else if(ans==-1){
+					return -1;
 				}
 				Deque(&q[j],&num_ret,dir);
 
@@ -385,10 +428,15 @@ int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB,int priority, dire
 			printf("UB_cur++\n");
 #endif
 
-			if (branch_and_bound(q, UB, UB_cur, LB, priority, both,0,0)) {
+			end=clock();
+			ans=branch_and_bound(q, UB, UB_cur, LB, priority, both,0,0,start);
+			if (ans!=0 && ans!=-1) {
 				return MinRelocation;
 			}
-			return -1;
+			else if(ans==-1){
+				return -1;
+			}
+			return 0;
 		}
 		else {
 			return 0;
