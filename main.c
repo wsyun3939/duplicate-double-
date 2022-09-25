@@ -26,12 +26,14 @@ int main(void) {
 	int i, j, x, l;
 	int k = 0;
 	int sum = 0;
+	int missmatch=0;
 	char filename[BUFFER];
 	char str[BUFFER];
 	FILE *fp_csv = NULL;
+	FILE *fp_write=NULL;
 	for (int a = NUMBER; a < NUMBER + 100 * TIER; a++) {
 		FILE * fp = NULL;
-		sprintf(filename, "C:/Users/wsyun/source/repos/Duplicate_Problem/alpha=%.1f/%d-%d-%d/%05d.txt", ALPHA,TIER, STACK, nblock, a);
+		sprintf(filename, "/Users/watanabeshun/Documents/alpha=%.1f/%d-%d-%d/%05d.txt", ALPHA,TIER, STACK, nblock, a);
 		printf("%s\n", filename);
 
 		//	読み込みモードでファイルを開く
@@ -58,11 +60,11 @@ int main(void) {
 
 		printf("sort:\n");
 		Array_print(stack);
-		int depth = 0;
 		int UB_cur = LB1;
 		int priority = 1;
-		int UB = UpperBound(stack,priority,both);
-		int min_relocation = branch_and_bound(stack, UB,UB_cur, LB1,priority,both, NULL, 0);
+		// int UB = UpperBound(stack,priority,both);
+		int min_relocation = 
+		branch_and_bound(stack, 100,UB_cur, LB1,priority,both,0,0);
 		//int min_relocation = enumerate_relocation(stack, depth, priority, both);
 		printf("min_relocation:%d,difference%d\n", min_relocation, min_relocation - LB1);
 		sum += min_relocation;
@@ -70,24 +72,29 @@ int main(void) {
 			k++;
 		}
 		fclose(fp);
-		/*if (a % 100 == 1) {
-			sprintf(filename, "C:/Users/wsyun/source/repos/Duplicate_Problem/alpha=%.1f/%d-%d-%d.csv", ALPHA, TIER, STACK, nblock);
+		if (a % 100 == 1) {
+			sprintf(filename, "/Users/watanabeshun/Documents/alpha=%.1f/%d-%d-%d.csv", ALPHA, TIER, STACK, nblock);
 			fp_csv=fopen(filename, "r");
+			sprintf(filename, "/Users/watanabeshun/Documents/Benchmark/%d-%d-%d_unfixed.csv", TIER, STACK, nblock);
+			fp_write = fopen(filename, "w");
 		}
 		fscanf(fp_csv, "%d ", &x);
 		if (x != min_relocation) {
+			if(x<min_relocation) getchar();
 			printf("missmatch\n");
-			getchar();
-		}*/
-		Array_clear(stack);
+			missmatch++;
+		}
+		fprintf(fp_write, "%d\n", min_relocation);
 		if (a % 100 == 0) {
 			nblock++;
 			fclose(fp_csv);
+			fclose(fp_write);
 		}
+	Array_clear(stack);
 	}
 	clock_t end = clock();
 	Array_terminate(stack);
-	printf("time:%f,match:%d,ave:%f\n", (double)(end - start) / CLOCKS_PER_SEC, k, (double)sum / (100 * TIER));
+	printf("time:%f,match:%d,ave:%f,missmatch:%d\n", (double)(end - start) / CLOCKS_PER_SEC, k, (double)sum / (100 * TIER),missmatch);
 	return 0;
 }
 

@@ -514,3 +514,10 @@ void Swap_IntDequeue(IntDequeue *q1, IntDequeue *q2) {
 	return;
 }
 
+// 各デックの要素数が３個以下の場合，1を返す
+int Array_check(IntDequeue *q){
+	for(int i=0;i<STACK;i++){
+		if(q[i].num>3) return -1;
+	}
+	return 1;
+}

@@ -101,4 +101,7 @@ void Array_terminate(IntDequeue *q);
 
 /*---キューを交換---*/
 void Swap_IntDequeue(IntDequeue *q1, IntDequeue *q2);
+
+// 各デックの要素数が３個以下の場合，1を返す
+int Array_check(IntDequeue *q);
 #endif

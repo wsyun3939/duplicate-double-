@@ -26,7 +26,7 @@ typedef struct {
 } Blocking;
 
 //*---仮上界値を用いた分枝限定法---*//
-int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB, int priority,direction dir,LB_idx *BT,int TableSize);
+int branch_and_bound(IntDequeue *q, int UB,int UB_cur, int LB, int priority,direction dir,int DstDeque,int k);
 
 //*---挿入ソート---*//
 int insert_sort(IntDequeue *q);
