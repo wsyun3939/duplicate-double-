@@ -1,11 +1,11 @@
 #ifndef ___data_info
 #define ___data_info
 
-#define ALPHA 0.2
+#define ALPHA 0.8
 #define TIER 5
-#define STACK 7
-#define NBLOCK 30
-#define NUMBER 3201
+#define STACK 6
+#define NBLOCK 25
+#define NUMBER 701
 #define TEST 1
 #define EITHER
 #define DISTINCTIVE
