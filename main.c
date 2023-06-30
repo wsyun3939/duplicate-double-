@@ -122,7 +122,7 @@ int main(void)
 	}
 	clock_t end = clock();
 	Array_terminate(stack);
-	printf("optimal value:%f,ave_gap:%f,max_gap:%d,ave_time:%f,max_time=%f\n", (double)sum / (100 * TIER - invalid), (double)gap / (100 * TIER - invalid), max_gap, (double)time / (CLOCKS_PER_SEC * 100 * TIER), max_time / CLOCKS_PER_SEC);
+	printf("optimal value:%f,ave_gap:%f,max_gap:%d,ave_time:%f,max_time=%f\n", (double)sum / (100 * TIER - invalid), (double)gap / (100 * TIER - invalid), max_gap, (double)time / CLOCKS_PER_SEC * (100 * TIER - invalid), max_time / CLOCKS_PER_SEC);
 	printf("invalid:%d\n", invalid);
 	return 0;
 }
