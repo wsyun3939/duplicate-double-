@@ -76,16 +76,16 @@ int main(void)
 			branch_and_bound(stack, 100, UB_cur, LB1, priority, both, 0, 0, clock());
 		// int min_relocation = enumerate_relocation(stack, depth, priority, both);
 		printf("min_relocation:%d,difference%d\n", min_relocation, min_relocation - LB1);
-		clock_t max_e = clock();
-		time += max_e - max_s;
-		if (max_time < (max_e - max_s))
-			max_time = max_e - max_s;
 		if (min_relocation == -1)
 		{
 			invalid++;
 		}
 		else
 		{
+			clock_t max_e = clock();
+			time += max_e - max_s;
+			if (max_time < (max_e - max_s))
+				max_time = max_e - max_s;
 			sum += min_relocation;
 			gap += min_relocation - LB1;
 			if (max_gap < min_relocation - LB1)
